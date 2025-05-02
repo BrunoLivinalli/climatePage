@@ -2,6 +2,7 @@
 
 
 *{
+    color: white;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -17,13 +18,16 @@ body{
 }
 
 .background{
-    position: fixed;
+
     inset: 0;
-    background-image: url(./assets/Tempo-Chuvoso.jpg);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-image: url(./assets/Tempo-Padrão.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
+    transition: background-image 0.5s ease-in-out;
 }
 
 /* Estilização do Card principal */
@@ -42,8 +46,15 @@ body{
     z-index: 1;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(20px);
+    
 }
 
+.card.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    display: flex; /* mantém flexível */
+}
 /* Estilização dos Input e Botão */
 
 form{
@@ -88,6 +99,21 @@ form button{
 }
 
 /* Estilização da Main ( Imagem, Temperatura e Cidade) */
+
+/* Inicialmente oculta main e footer */
+main, footer {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Quando os dados forem carregados, mostra main e footer com animação */
+main.show, footer.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 
 main{
     margin-top: 8px;
